@@ -1,0 +1,15 @@
+# IntelliJ
+.idea/
+
+# Golang
+main
+vendor/
+dist/
+go.work
+go.work.sum
+
+## mac OS finder garbage
+**/*.DS_Store
+
+# VSCode stuff
+.vscode/

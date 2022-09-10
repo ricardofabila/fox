@@ -1,0 +1,332 @@
+#+BEGIN_HTML
+<p align="center"><img src="images/fox.gif" width="auto" height="100px" alt="fox"></p>
+
+<h1 align="center">
+    fox
+    <p align="center"><img src="https://readme-typing-svg.demolab.com?font=Raleway&duration=4000&pause=3600000&color=1E1E1E&center=true&width=600&height=30&lines=A+(simple!)+package+manager+to+install+your+tools+with+ease*" /></p>
+</h1>
+<h5 align="center">Think <a href="https://brew.sh">Homebrew</a> for private (and public) repos</h5>
+
+<p align="center">
+  <a href="#-about">About</a> •
+  <a href="#dependencies">Dependencies</a> •
+  <a href="#-installation">Installation</a> •
+  <a href="#-features">Features</a> •
+  <a href="#how-to-install-packages">How to install packages</a> •
+  <a href="#-todos">TODOs</a> •
+  <a href="#-credits">Credits</a>
+</p>
+
+<p align="center">
+    <a href="https://github.com/ricardofabila/fox/releases" target="_blank">
+      <img src="https://img.shields.io/github/v/release/ricardofabila/fox?label=version">
+    </a>
+    <a href="https://www.youtube.com/watch?v=Cqd-_fHdTyA" target="_blank">
+      <img src="https://img.shields.io/badge/Coffee%20cups%20drank-13-967259">
+    </a>
+    <a href="https://www.youtube.com/watch?v=-Yx_3DZrRg8" target="_blank">
+      <img src="https://img.shields.io/github/go-mod/go-version/ricardofabila/fox">
+    </a>
+    <a href="https://github.com/ricardofabila/fox/blob/main/LICENSE" target="_blank">
+      <img src="https://img.shields.io/github/license/ricardofabila/fox">
+    </a>
+</p>
+
+<p align="center">
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=10&pause=160&color=F89C54&center=true&vCenter=true&width=435&height=50&lines='%EF%BD%A5%CB%8E--%CB%8E%5E%5E-;~%EF%BD%A5%CB%8C--%CB%8C%5E%5E-;_%EF%BD%A5%2C--%2C%5E%5E-;%EF%BD%A1%EF%BD%A5.--.%5E%5E-" />
+</p>
+#+END_HTML
+
+#+BEGIN_QUOTE
+“It's been a prevalent notion. Fallen sparks. Fragments of vessels broken at the Creation. And someday, somehow, before the end, a gathering back to home. A messenger from the Kingdom, arriving at the last moment. But I tell you there is no such message, no such home -- only the millions of last moments... nothing more. Our history is an aggregate of last moments.”
+
+ ― Thomas Pynchon, Gravity's Rainbow
+#+END_QUOTE
+
+#+HTML: <br>
+
+-----
+
+
+
+** 📖 About
+
+This tool helps you install packages from private (and public) GitHub repositories.
+
+What does =🦊 fox= do?
+
+- Makes is trivial to install a package form a GitHub repository even if it's private. Fox packages are just GitHub releases, as long as you have read access to a repo, you can install anything you want.
+- Fox installs packages to a specific directory =/usr/local/bin/Fox/bin= (on macOS and linux systems). It won't install anything outside that directory.
+- Trivially create your own packages. To add your repo to the available packages list, all you need to do is edit a *yaml* file. That's it!
+
+-----
+
+** 🤖 Installation:
+
+This small section is meant to help you get started in no time. Getting started is as easy as 1, 2, 3.
+
+1) Just run:
+
+#+BEGIN_SRC sh
+sudo curl -fsSL "install.getfox.sh" | bash
+#+END_SRC
+
+Follow the on screen instructions to add =fox= to your /$PATH/.
+
+2) Install the official [[https://cli.github.com/][GitHub CLI]], if you don't already have it. Relax, you can run =fox gh= to install it 😉. Then run =gh auth=. To setup authentication. I recommend using adding ssh keys so you never have to use a password.
+
+3) That's it! That wasn't so bad, was it?
+
+If you did everything correctly you can try running the following command:
+
+This will check your environment for potential problems and possible enhancements:
+#+BEGIN_SRC sh
+fox doctor
+#+END_SRC
+
+-----
+
+** Dependencies:
+
+*** ⚓ Required
+
+This tool is as zero-dependencies as it can possibly get.
+
+- [[https://cli.github.com/][GitHub CLI]] to install packages. You can run =fox gh= to install it.
+
+That's it. Seriously, you don't need to install anything more.
+
+-----
+
+** 🎉 Features
+
+Basically I implemented all the basic commands that you use with other package managers.
+
+#+BEGIN_SRC yaml
+completion:    Generate the autocompletion script for the specified shell
+config:        Display your fox configuration
+doctor:        Check for common issues and recommendations with your fox
+               configuration and overall environment.
+help:          Help about any command
+info:          Get info about a specific package
+install:       Install a package
+installed:     List the packages you have installed
+list:          See the repositories available
+repositories:  Print your repositories file
+uninstall:     Remove packages from your system
+update:        Update the available packages cache
+upgrade:       Upgrade installed packages to the latest version
+#+END_SRC
+
+[[images/first.png]]
+
+*** Multiplatform
+
+Works for the major unix-like operative systems (macOS and linux).
+
+/Note: Even though I can build a Windows executable, it wouldn't work. I'll add windows support (much) later./
+
+*** Doctor
+
+[[images/doctor.png]]
+
+Use the built-in =doctor= command to check for problems as well as recommendations.
+
+*** Autocompletion
+
+Use the built-in =completion= command to generate auto-completions for various shells.
+
+[[images/autocompletion.png]]
+
+-----
+
+
+**  How to install packages
+
+Installing packages is super easy, just run:
+
+#+BEGIN_SRC sh
+fox install <package-name>
+#+END_SRC
+
+There is an official list of packages that you can find [[https://github.com/ricardofabila/fox-packages][here]]. If you have a public package that you want to share with the world, feel free to submit a PR for it. I will gladly add it to the list 😄. See the section below for more details.
+
+** How to make my package installable with fox
+
+To install a package, first =fox= needs to know where to find it. To achieve this, you need to add a =remote= to your repositories file, which is located at =~/.fox/repositories.yaml=.
+
+The *remotes* section of this YAMl file consists of a list of items with the following format:
+
+#+BEGIN_SRC yaml
+remotes:
+  - url: "" # string - a url where to find a packages YAML file
+    type: "github" # string - either 'open' or 'github'
+#+END_SRC
+
+The value for =url= is a *string* that fox will use to look for a YAMl file with your packages. The value for =type= is a *string* that can be either *github* or *open*. Use /open/ if the url is public (eg. on your own server, an S3 bucket, etc), or use /github/ if the file is hosted on a private/public GitHub repo.
+
+Example =~/.fox/repositories.yaml=:
+
+#+BEGIN_SRC yaml
+remotes:
+  - url: "repos/<OWNER>/<REPO_NAME>/contents/packages.yaml"
+    type: "github"
+  - url: "https://raw.githubusercontent.com/ricardofabila/test/main/repositories.yaml"
+    type: "open"
+#+END_SRC
+
+Read below to know what this *remote* file consists of.
+
+*** How to create a remote
+
+A remote is just a YAMl file that consists of a list of packages. It has the following format:
+
+#+BEGIN_SRC yaml
+packages:
+  - path: "me/hello" # string - GitHub repository with the format OWNER/REPO
+                     # this is GitHub's standard format
+                     # just look at the URL of any repo (like this one)
+    executableName: "hello" # string - The name you want people to type
+                            # when using your tool
+    type: "binary" # string - Either 'binary' for executables or 'script' for
+                              # arbitrary scripts (eg. bash scripts)]
+    # The following is a list of optional dependencies, may ignore if there are none
+    dependsOn:
+      - "dependency_name" # - string
+#+END_SRC
+
+Example:
+#+BEGIN_SRC yaml
+packages:
+    - path: zyedidia/micro
+      executableName: micro
+      type: binary
+    - path: ricardofabila/test
+      executableName: test
+      type: script
+      dependsOn:
+        - bash
+#+END_SRC
+
+Keep reading to learn how to create a package.
+
+*** How to create a package
+
+Finally to make your package installable, all you need it to have a GitHub release (*not* a /draft/) for it.
+
+1. Make sure your repo has a *release* with attached assets. Right now only binary executables and scripts (Eg. bash scripts) are supported. They can be contained in a zip or a tarball.
+
+#+BEGIN_QUOTE
+If your package is an *executable*, make sure your release has the binaries with the appropriate name for the OS and the architecture. It doesn't have to be perfect as =fox= will try to fuzzy search for the best match.
+#+END_QUOTE
+
+Example:
+
+#+BEGIN_SRC yaml
+  - mypkg_darwin_amd64_v1
+  - mypkg_darwin_arm64
+  - mypkg_linux_386
+  - mypkg_linux_amd64_v1
+  - mypkg_linux_arm64
+  - mypkg_windows_386.exe
+  - mypkg_windows_amd64_v1.exe
+  - mypkg_windows_arm64.exe
+#+END_SRC
+
+#+BEGIN_QUOTE
+If your package is a *script*. Just have the script file in the assets with the name you choose as your =executableName= in the YAML entry.
+#+END_QUOTE
+
+Example:
+#+BEGIN_SRC yaml
+  - myscript.sh
+#+END_SRC
+
+2. Add your package to your =remote= file following the format described in the example on the "How to create a remote" section:
+
+Example of your remote YAML file:
+#+BEGIN_SRC yaml
+packages:
+    - path: me/bff
+      executableName: bff
+      type: binary
+      dependsOn:
+        - curl
+    - path: company-name/a-tool
+      executableName: tool
+      type: script
+      dependsOn:
+        - wget
+        - zsh
+#+END_SRC
+
+And that's it! Now you can run:
+
+#+BEGIN_SRC sh
+fox install tool
+#+END_SRC
+
+**** ❓ Can I test how my package will be installed before adding it to the file?
+
+Of course you can! In your =~/.fox/repositories.yaml= file, there is a section called =packages=. That section is a list of packages. It follows the exact format described above.
+
+You can use this section to add you package locally and test how =fox= will install it. Useful if you want to test that you did everything right when creating your release.
+
+Example:
+
+In your =~/.fox/repositories.yaml=:
+#+BEGIN_SRC yaml
+packages:
+    - path: me/my-thing
+      executableName: my-thing
+      type: binary
+      dependsOn:
+        - curl
+#+END_SRC
+
+
+And now you can run the following to make sure you did every thing right:
+
+#+BEGIN_SRC sh
+fox install my-thing
+#+END_SRC
+
+** How to install a public package
+
+Incidentally, using the =packages= list in your private config, you can install packages that are on GitHub but the auth didn't add it to a package manager**. All without needed the package authors to even know that =fox= exists. As long as their releases follow a pattern that =fox= can understand (which is the same pattern most package managers use), you should be able to do it (exceptions apply).
+
+We can use this [[https://github.com/metadelta/mdlt][repo I randomly found]] as an example:
+
+#+BEGIN_SRC yaml
+packages:
+     - path: metadelta/mdlt
+       executableName: mdlt
+       type: binary
+#+END_SRC
+
+
+And now you can do =fox install mdlt= and bam! You have it without the author needing to do anything.
+
+
+** 📓 TODOs
+
+Homework for me 🤓
+
+- ☐ GitLab support.
+- ☐ Arbitrary repositories (eg. S3 buckets, your own server) support.
+- ☐ Windows support.
+
+**  💳 Credits
+
+#+BEGIN_HTML
+<p align="center">
+  Made with ❤️ by
+  <a href="https://github.com/ricardofabila" target="_blank">@ricardofabila</a>
+  <br/>
+  at <a href="https://bishopfox.com/" target="_blank">Bishop Fox</a>
+</p>
+#+END_HTML
+
+*No foxes were harmed in the making of this package.
+
+**I can't blame them, it is unnecessary difficult; specially for private repos. That's why I made =fox= in the first place. It was easier to create a new package manager that works on macOS and linux than to add my CLI tool to HomeBrew because it was a private repo.

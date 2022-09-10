@@ -1,0 +1,28 @@
+fail_fast: true
+default_stages: [ commit ]
+repos:
+  # Our own local hooks
+  - repo: local
+    hooks:
+      - id: update-version
+        name: 'update version'
+        entry: .githooks/update-version.sh
+        files: '\.go$'
+        language: 'script'
+        description: "updates the version for the --version flag"
+        require_serial: true
+        pass_filenames: false
+  ## Sadly some of these hooks don't have a `fix` option.
+  ## So, run these third party hooks first as you don't want to have wait for all hooks
+  ## only to find our that one of the files is missing an empty line at the end
+  ## and have to run everything from the beginning.
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+      - id: check-merge-conflict
+      - id: trailing-whitespace
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: no-commit-to-branch
+        args: [ --branch, main ]
