@@ -582,13 +582,19 @@ func ExtractAsset(fileName, executableName string) (string, error) {
 
 		// in the case for scripts, the file might have an extension or something extra. eg: my-script.js
 		if strings.Contains(strings.ToLower(info.Name()), strings.ToLower(executableName)) && !info.IsDir() {
-			// some scripts have man pages that end en a .number
+			// some scripts have man pages that end with a .number
 			match, _ := regexp.MatchString("\\.\\d+", info.Name())
-			if !match {
-				desiredFile = path
+			if match {
+				return nil
 			}
 
-			return nil
+			for _, ext := range []string{".svg", ".ico", ".png", ".desktop"} {
+				if strings.HasSuffix(info.Name(), ext) {
+					return nil
+				}
+			}
+
+			desiredFile = path
 		}
 
 		return nil

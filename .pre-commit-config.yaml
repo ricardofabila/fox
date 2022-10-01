@@ -7,7 +7,7 @@ repos:
       - id: update-version
         name: 'update version'
         entry: .githooks/update-version.sh
-        files: '\.go$'
+        files: '\.go$|VERSION'
         language: 'script'
         description: "updates the version for the --version flag"
         require_serial: true
