@@ -1,3 +1,9 @@
+## 1.0.3
+
+### Fixed
+
+Add mac to the list of installable packages for macOS
+
 ## 1.0.1
 
 ### Add
