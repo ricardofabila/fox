@@ -30,8 +30,8 @@ var listFlags = ListFlags{
 // listCmd represents the repos command
 var listCmd = &cobra.Command{
 	Use:   "list",
-	Short: "See the repositories available",
-	Long:  `See the repositories available to install packages from.`,
+	Short: "See the packages available",
+	Long:  `List the available packages you can install`,
 	Example: `
 
 	List the packages available in interactive mode.

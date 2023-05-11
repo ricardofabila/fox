@@ -66,5 +66,6 @@ in your config file with the option: autoUpdate`,
 }
 
 func init() {
+	updateCmd.Aliases = []string{"u"}
 	rootCmd.AddCommand(updateCmd)
 }

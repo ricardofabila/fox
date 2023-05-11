@@ -67,6 +67,6 @@ var uninstallCmd = &cobra.Command{
 }
 
 func init() {
-	uninstallCmd.Aliases = []string{"yeet", "remove"}
+	uninstallCmd.Aliases = []string{"yeet", "remove", "rm"}
 	rootCmd.AddCommand(uninstallCmd)
 }

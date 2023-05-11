@@ -69,6 +69,7 @@ var MacOS = []string{
 	"macos" + runtime.GOARCH,
 	runtime.GOARCH + "macos",
 	"macos",
+	"mac",
 	"mac" + runtime.GOARCH,
 	runtime.GOARCH + "mac",
 	"osx" + runtime.GOARCH,
