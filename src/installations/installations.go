@@ -270,6 +270,10 @@ func InstallPackage(availablePackages []repositoriesTypes.Package, executableNam
 			return false
 		}
 
+		if strings.HasSuffix(x.Name, ".sha256") || strings.HasSuffix(x.Name, ".md5") {
+			return false
+		}
+
 		if strings.HasSuffix(x.Name, ".gz") && !strings.HasSuffix(x.Name, ".tar.gz") {
 			return false
 		}
