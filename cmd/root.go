@@ -22,12 +22,12 @@ import (
 var repositoriesConfig repositoriesTypes.Config
 var userConfig types.UserConfig
 
-const VERSION = "1.0.3"
+const VERSION = "1.0.4"
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "fox",
-	Short: "Use our APIs the easy way",
+	Short: "Fox is a (simple!) package manager to install your own tools with ease",
 	Long: `
              ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀
              ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⠙⠻⢶⣄⡀⠀⠀⠀⢀⣤⠶⠛⠛⡇⠀⠀⠀
