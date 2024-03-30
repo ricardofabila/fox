@@ -10,12 +10,11 @@ builds:
       - CGO_ENABLED=0
     goos:
       - linux
-      ## - windows
       - darwin
     # Binary name.
     # Can be a path (e.g. `bin/app`) to wrap the binary in a directory.
     # Default is the name of the project directory.
-    binary: 'fox_{{ .Target }}'
+    binary: 'hapi_{{ .Target }}'
     no_unique_dist_dir: true
 archives:
   -
@@ -26,12 +25,6 @@ archives:
     format: zip
     wrap_in_directory: false
     strip_parent_binary_folder: true
-    replacements:
-        darwin: Darwin
-        linux: Linux
-        windows: Windows
-        386: i386
-        amd64: x86_64
 checksum:
   name_template: 'checksums.txt'
 snapshot:
