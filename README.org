@@ -187,8 +187,6 @@ Homework for me 🤓
 <p align="center">
   Made with ❤️ by
   <a href="https://github.com/ricardofabila" target="_blank">@ricardofabila</a>
-  <br/>
-  at <a href="https://bishopfox.com/" target="_blank">Bishop Fox</a>
 </p>
 #+END_HTML
 
